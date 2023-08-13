@@ -1,0 +1,20 @@
+.userPhoto {
+    width: 100px;
+    height: 100px;
+}
+
+.selectedPage {
+    font-weight: 700;
+}
+.page{
+    font-size: 20px;
+    padding: 0 10px;
+}
+.page:hover{
+    cursor: pointer;
+}
+.activePage {
+    /* Стили для активной страницы */
+    font-weight: bold;
+    color: blue; /* или любой другой цвет, который вы хотите использовать */
+}

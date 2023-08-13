@@ -1,0 +1,49 @@
+.header {
+    grid-area: header;
+    background-color: #231F20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.header img {
+    width: 2rem;
+
+}
+
+.loginBlock {
+    font-size: 20px;
+    color: whitesmoke;
+    margin-right: 10px;
+}
+.loginBlock span{
+
+}
+.loginBlock button {
+    border: none;
+    background: gray;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    font-size: large;
+    border-radius: 3px;
+    cursor: pointer;
+    color: whitesmoke;
+    padding: 5px 10px;
+
+}
+
+.loginBlock button:hover {
+    opacity: 0.3;
+
+}
+
+.loginBlock a {
+    font-size: 20px;
+    color: whitesmoke;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.loginBlock a:hover {
+    opacity: 0.3;
+}

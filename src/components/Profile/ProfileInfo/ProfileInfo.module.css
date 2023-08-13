@@ -1,0 +1,53 @@
+
+img{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    max-height: 300px;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+    width: 100%;
+}
+.row{
+    background: rgba(0,0,0, .7);
+    width: 1000px;
+    position: absolute;
+    bottom: 25px;
+    height: 55px;
+    top: 263px;
+}
+
+.descriptionBlock {
+    position: absolute;
+    text-align: center;
+    padding: 0 20px;
+    top: 178px;
+    z-index: 999;
+
+
+}
+.photoInfo{
+
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+}
+.nameUser{
+    font-size: 24px;
+    color: #27aae1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+
+}
+.infoUser{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20px;
+}
+.textInfo{
+    color: #939598;
+    margin: 0 0 10px;
+}
