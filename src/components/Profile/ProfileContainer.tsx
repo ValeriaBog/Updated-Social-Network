@@ -2,10 +2,8 @@ import { Component, ComponentType } from 'react'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-
 import { AppStateType } from 'redux/store'
 import { profileActions, profileThunks } from 'redux/reducers/profileReducer'
-
 import { Profile } from './Profile'
 
 const mapStateToProps = (state: AppStateType) => ({
@@ -24,7 +22,8 @@ const ProfileContainer = compose<ComponentType>(
    connect(mapStateToProps, mapDispatchToProps),
    withRouter,
 )(class extends Component<PropsType> {
-   componentDidMount() {
+
+   refleshProfile(){
       const { getUserProfile, match, getStatus, authorizedUserId, history } = this.props
       let userId = Number(match.params.userId)
 
@@ -37,9 +36,18 @@ const ProfileContainer = compose<ComponentType>(
       getUserProfile(userId)
       getStatus(userId)
    }
+   componentDidMount() {
+      this.refleshProfile()
+   }
+
+   componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
+      if(this.props.match.params.userId!== prevProps.match.params.userId){
+         this.refleshProfile()
+      }
+   }
 
    render() {
-      return <Profile {...this.props} />
+      return <Profile {...this.props} isOwner={!this.props.match.params.userId}/>
    }
 })
 

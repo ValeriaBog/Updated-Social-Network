@@ -1,6 +1,6 @@
 import {APIResultCodes} from 'api/api'
 import {profileAPI} from 'api/profileAPI'
-import {PostType, ProfileType} from 'redux/types'
+import {PhotosType, PostType, ProfileType} from 'redux/types'
 import {AppThunkType, InferActionTypes} from 'redux/store'
 
 
@@ -34,6 +34,8 @@ export const profileReducer = (state = initialState, action: ActionsType): Initi
             return {...state, status: action.payload.status}
         case "DELETE-POST":
             return {...state, posts: state.posts.filter(p => p.id !== action.payload.postId)}
+        case "SAVE-PHOTO":
+            return {...state, profile: {...state.profile!, photos: {small: action.payload.photo.small, large: action.payload.photo.large} }}
         default:
             return state
     }
@@ -44,6 +46,7 @@ export const profileActions = {
     setUserProfile: (profile: ProfileType) => ({type: 'SET-USER-PROFILE', payload: {profile}} as const),
     setStatus: (status: string) => ({type: 'SET-STATUS', payload: {status}} as const),
     deletePost: (postId: number) => ({type: 'DELETE-POST', payload: {postId}} as const),
+    savePhoto: (photo: PhotosType) => ({type: 'SAVE-PHOTO', payload: {photo}} as const),
 }
 
 export const profileThunks = {
@@ -68,6 +71,14 @@ export const profileThunks = {
             }
         }
     },
+    savePhoto(file: File): AppThunkType {
+        return async dispatch => {
+            const res = await profileAPI.savePhoto(file)
+            if (res.data.resultCode === APIResultCodes.SUCCESS) {
+                dispatch(profileActions.savePhoto(res.data.data!))
+            }
+        }
+    },
 }
 
 type ActionsType = InferActionTypes<typeof profileActions>
@@ -75,3 +86,4 @@ type ActionsType = InferActionTypes<typeof profileActions>
 type InitialStateType = typeof initialState
 
 export type UpdateStatusType = typeof profileThunks['updateStatus']
+export type UpdatePhotoType = typeof profileThunks['savePhoto']

@@ -1,0 +1,16 @@
+.uploadWidget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploadButton {
+    cursor: pointer;
+}
+
+.uploadIcon {
+    top: 0;
+    width: 50px;
+    height: 50px;
+}
+
