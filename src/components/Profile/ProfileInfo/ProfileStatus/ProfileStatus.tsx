@@ -1,46 +1,67 @@
-import { ChangeEvent, FC, FocusEvent, useState } from 'react'
-import { UpdateStatusType } from 'redux/reducers/profileReducer'
-import s from './ProfileStatus.module.css'
+import React, {ChangeEvent} from 'react';
+
+import styles from './ProfileStatus.module.css';
 
 type PropsType = {
-   status: string
-   updateStatus: UpdateStatusType
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
-export const ProfileStatus: FC<PropsType> = ({ status, updateStatus }) => {
-   const [editMode, setEditMode] = useState(false)
-   const [statusInput, setStatusInput] = useState(status)
-   console.log(status)
-   const toggleEditMode = () => {
-      if (status !== statusInput) {
-         editMode
-            ? updateStatus(statusInput)
-            : setStatusInput(status)
-      }
+type StateType = {
+    editMode: boolean
+    status: string
+}
 
-      setEditMode(!editMode)
-   }
+export class ProfileStatus extends React.Component<PropsType> {
+    state = {
+        editMode: false,
+        status: this.props.status
+    }
 
-   const onStatusInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setStatusInput(e.currentTarget.value)
-   }
-   const onStatusInputFocus = (e: FocusEvent<HTMLInputElement>) => {
-      e.target.select()
-   }
+    activateEditMode = () => {
+        this.setState({
+            editMode: true
+        })
+    }
+    deActivateEditMode = () => {
+        this.setState({
+            editMode: false
+        })
+        this.props.updateUserStatus(this.state.status)
+    }
+    onUpdateStatusChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
 
-   return !editMode ? (
-      <div className={s.status}>
-         <span onDoubleClick={toggleEditMode}>{status===null?'Good morning, my friends!':status}</span>
-      </div>
-   ) : (
-      <div className={s.status}>
-         <input value={statusInput}
-                onChange={onStatusInputChange}
-                autoFocus
-                onFocus={onStatusInputFocus}
-                onBlur={toggleEditMode}
-                className={s.textField}
-         />
-      </div>
-   )
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                {
+                    !this.state.editMode
+                        ? <div>
+                            <span className={styles.status}
+                                  onDoubleClick={this.activateEditMode}>{this.props.status || 'No Status'}</span>
+                        </div>
+                        : <div>
+                            <input
+                                onChange={this.onUpdateStatusChangeHandler}
+                                autoFocus={true}
+                                onBlur={this.deActivateEditMode}
+                                value={this.state.status}
+                            />
+                        </div>
+                }
+            </div>
+        )
+    }
 }

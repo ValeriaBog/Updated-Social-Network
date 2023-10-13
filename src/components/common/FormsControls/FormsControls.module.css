@@ -1,0 +1,71 @@
+.formControl textarea, input:not([type="file"]) {
+    font-style: normal;
+    color: #808080;
+    overflow: hidden;
+    background: #F3F4F6;
+    border: none;
+    border-radius: 6px;
+    resize: none;
+    height: 44px;
+    padding: 12px 20px;
+    outline: none;
+    width: 100%;
+}
+
+.formControl.error textarea {
+    box-sizing: border-box;
+    border: 1px solid #ff4b4c;
+    margin: 2px 0 0 0;
+    outline: none;
+}
+
+.formControl.error input {
+    box-sizing: border-box;
+    border: 1px solid #ff4b4c;
+    margin: 2px 0 0 0;
+    outline: none;
+}
+
+.errorMessage {
+    box-sizing: border-box;
+    min-width: 100px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    animation: blink1 3s linear infinite;
+}
+
+@keyframes blink1 {
+    0% {
+        color: #ff4b4c;
+    }
+    50% {
+        color: #ffe4c4;
+    }
+    100% {
+        color: #ff4b4c;
+    }
+}
+
+input[type="checkbox"] {
+    transform: scale(0.5);
+}
+
+label.checkboxLabel {
+    display: flex;
+    align-items: center;
+}
+
+label.checkboxLabel > input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+.createFieldRoot {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.createFieldText {
+    line-height: 22px;
+    color: #666666;
+}

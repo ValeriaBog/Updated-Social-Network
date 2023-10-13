@@ -1,0 +1,13 @@
+.root {
+    display: flex;
+}
+
+.messages {
+    width: 100%;
+}
+
+.messages__items {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}

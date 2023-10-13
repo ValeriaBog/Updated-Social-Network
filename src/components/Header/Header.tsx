@@ -1,26 +1,73 @@
-import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import { HeaderPropsType } from './HeaderContainer'
+import styles from './Header.module.css';
 
-import s from './Header.module.css'
+import { UsersSearchForm } from '../Users/UsersSearchForm';
+import { ProfileType } from '../../types';
+import {useWindowWidth} from '../../hooks';
+import menuIcon from '../../assets/images/header/icon-menu.svg';
+import iconSearch from '../../assets/images/header/icon-search-button.svg';
+import logoutIcon from '../../assets/images/header/icon-logout.svg';
+import logo from '../../assets/images/header/logo.png';
 
-export const Header: FC<HeaderPropsType> = ({ isAuth, login, logOut }) => {
-   const handleLogOut = () => logOut()
+type PropsType = {
+    isAuth: boolean;
+    login: string | null;
+    profile: ProfileType | null;
+    logOut: () => void;
+    onFilterChanged: (filterSearch: string) => void;
+};
 
-   return (
-      <header className={s.header}>
-         <img src="https://www.reactacademy.live/logoReact300px.png" alt="Logo" />
-         <div className={s.loginBlock}>
+export const Header = (props: PropsType) => {
+    const { isAuth, logOut, login, onFilterChanged } = props;
+
+    const location = useLocation();
+    const currentPath = location.pathname;
+
+    const isTablet = useWindowWidth(690)
+
+    const [isSearchFormVisible, setIsSearchFormVisible] = useState(false);
+
+    const handleSearchIconClick = () => setIsSearchFormVisible(!isSearchFormVisible);
+    const handleCloseIconClick = () => setIsSearchFormVisible(false);
+
+    return (
+        <header className={styles.root}>
+            <div className={styles.mainBlock}>
+                {!isSearchFormVisible && <div className={styles.logoBlock}>
+                    <div className={styles.menuIcon}>
+                        <img src={menuIcon} alt="menu"/>
+                    </div>
+                    <div className={styles.menuLogo}>
+                        <img src={logo} alt="logo"/>
+                    </div>
+                </div>}
+                {currentPath === '/users' && (
+                    <div className={styles.search}>
+                        {isTablet && !isSearchFormVisible && (
+                            <div className={styles.searchIcon} onClick={handleSearchIconClick}>
+                                <img src={iconSearch} alt="icon-search" />
+                            </div>
+                        )}
+                        {(!isTablet || isSearchFormVisible) && (
+                            <UsersSearchForm onFilterChanged={onFilterChanged} handleCloseIconClick={handleCloseIconClick} />
+                        )}
+                    </div>
+                )}
+            </div>
             {isAuth ? (
-               <>
-                  <span>{login} <span>-</span> </span>
-                  <button onClick={handleLogOut}>Log Out</button>
-               </>
+                <div className={styles.loginBlock}>
+                    {login && <div className={styles.loginName}>{login}</div>}
+                    <button className={styles.button} onClick={logOut}>
+                        <img src={logoutIcon} alt="logout" />
+                    </button>
+                </div>
             ) : (
-               <Link to="/login">Login</Link>
+                <NavLink className={styles.navlink} to={'/login'}>
+                    Login
+                </NavLink>
             )}
-         </div>
-      </header>
-   )
-}
+        </header>
+    );
+};

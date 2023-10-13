@@ -1,0 +1,33 @@
+.root {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    margin:15px auto;
+    position: relative;
+    color: #2563EB;
+    box-sizing: border-box;
+    animation: animationLoader 1s linear infinite alternate;
+}
+
+@keyframes animationLoader {
+    0% {
+        box-shadow: -38px -12px ,  -14px 0,  14px 0, 38px 0;
+    }
+    33% {
+        box-shadow: -38px 0, -14px -12px,  14px 0, 38px 0;
+    }
+    66% {
+        box-shadow: -38px 0 , -14px 0, 14px -12px, 38px 0;
+    }
+    100% {
+        box-shadow: -38px 0 , -14px 0, 14px 0 , 38px -12px;
+    }
+}

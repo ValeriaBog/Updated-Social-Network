@@ -1,71 +1,40 @@
-import {stopSubmit} from 'redux-form'
+import {AUTH_GET_CAPTCHA_URL, AUTH_SET_USER_DATA} from '../actions/actionTypes';
+import {AuthActionType} from '../actions/authAction';
 
-import {APIResultCodes} from 'api/api'
-import {authAPI, LoginParamsType} from 'api/authAPI'
-
-import {AppThunkType, InferActionTypes} from 'redux/store'
-
-const initialState = {
-    id: null as (number | null),
-    email: null as (string | null),
-    login: null as (string | null),
-    isAuth: false,
+export type AuthMeType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+    captchaUrl: string | null
 }
 
-export const AuthReducer = (state = initialState, action: ActionsType): InitialStateType => {
+const initialState: AuthMeType = {
+    userId: null,
+    email: null,
+    login: null,
+    isAuth: false,
+    captchaUrl: null
+}
+
+export type InitialStateType = typeof initialState
+
+export const authReducer = (state: InitialStateType = initialState, action: AuthActionType): InitialStateType => {
     switch (action.type) {
-        case 'auth/SET-AUTH-USER-DATA':
+        case (AUTH_SET_USER_DATA): {
             return {
                 ...state,
                 ...action.payload
             }
+        }
+        case (AUTH_GET_CAPTCHA_URL): {
+            return {
+                ...state,
+                captchaUrl: action.payload.captchaUrl
+            }
+        }
         default:
             return state
     }
 }
 
-export const authActions = {
-    setAuthUserData: (id: number | null, email: null | string, login: null | string, isAuth: boolean) => ({
-        type: 'auth/SET-AUTH-USER-DATA',
-        payload: {id, email, login, isAuth}
-    } as const)
-}
-
-export const authThunks = {
-    getAuthUserData(): AppThunkType<Promise<void>> {
-        return async dispatch => {
-            const res = await authAPI.me()
-            if (res.data.resultCode === 0) {
-                const {id, login, email} = res.data.data
-                dispatch(authActions.setAuthUserData(id, email, login, true))
-            }
-        }
-    },
-    logIn(data: LoginParamsType): AppThunkType {
-        return async dispatch => {
-            const res = await authAPI.logIn(data)
-            if (res.data.resultCode === APIResultCodes.SUCCESS) {
-                dispatch(authThunks.getAuthUserData())
-            } else {
-                const message = res.data.messages.length ? res.data.messages[0] : 'Some error'
-
-                dispatch(stopSubmit('login', {_error: message}))
-            }
-        }
-    },
-    logOut(): AppThunkType {
-        return async dispatch => {
-            const res = await authAPI.logOut()
-            if (res.data.resultCode === APIResultCodes.SUCCESS) {
-                dispatch(authActions.setAuthUserData(null, null, null, false))
-            }
-
-        }
-    },
-}
-
-
-// TYPES
-type ActionsType = InferActionTypes<typeof authActions>
-
-type InitialStateType = typeof initialState

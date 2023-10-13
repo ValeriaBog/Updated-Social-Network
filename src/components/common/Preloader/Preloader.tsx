@@ -1,9 +1,12 @@
-import preloader from 'assets/images/preloader.svg'
+import React from 'react';
 
-export const Preloader = () => {
-   return (
-      <div>
-         <img src={preloader} alt="Preloader" />
-      </div>
-   )
-}
+import styles from './Preloader.module.css'
+
+export const Preloader: React.FC = () => {
+    return (
+        <div  className={styles.root}>
+        <span className={styles.loader}></span>
+        </div>
+    );
+};
+

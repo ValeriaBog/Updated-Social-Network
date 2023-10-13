@@ -1,17 +1,19 @@
-
-.status{
-    color: white;
-    text-align: center;
-    margin-top: 15px;
+.root {
+    margin-bottom: 5px;
+    max-width: 500px;
+    word-break: break-word;
 }
-.status input {
-    padding: 5px 10px; /* Поля вокруг текста */
-    font-size: 16px; /* Размер шрифта */
-    border: 2px solid #ccc; /* Граница */
-    border-radius: 5px; /* Скругление углов */
-    outline: none; /* Удаление выделения при фокусе */
-    transition: border-color 0.3s ease;
-    margin-bottom: 15px;
-    background-color: rgba(0, 0, 0, 0.38);
-    color: white;
+
+.status {
+    line-height: 22px;
+    color: #666666
+}
+
+.input {
+    text-align: center;
+    max-width: 400px !important;
+    color: #393939 !important;
+    background: #f0f2f5 !important;
+    border-radius: 20px !important;
+    padding: 12px 24px;
 }

@@ -1,20 +1,25 @@
-import { FC } from 'react'
+import styles from './Post.module.css';
 
-import s from './Post.module.css'
+import {PostHeader} from './PostHeader';
+import {PostType, ProfileType} from '../../../../types';
+import likeIcon from '../../../../assets/images/profile/about/icon-heart.svg'
 
 type PropsType = {
-   message: string
-   likesCount?: number
+    profile: ProfileType | null
+    post: PostType
 }
-export const Post: FC<PropsType> = ({ message, likesCount }) => {
-   return (
-      <div className={s.item}>
-         <img src="https://avatars.githubusercontent.com/u/69945902?s=100"
-              alt="avatar" />
-         {message}
-         <div>
-            <span>like </span><span>{likesCount}</span>
-         </div>
-      </div>
-   )
+
+export const Post = (props: PropsType) => {
+    const {profile} = props
+
+    return (
+        <div className={styles.root}>
+            <PostHeader profile={profile}/>
+            <div className={styles.text}>{props.post.message}</div>
+            <div className={styles.likes}>
+                <img className={styles.likesIcon} src={likeIcon} alt="icon-likes"/>
+                <span className={styles.likesCount}>{props.post.likesCount}</span>
+            </div>
+        </div>
+    )
 }

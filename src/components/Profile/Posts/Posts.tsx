@@ -1,27 +1,32 @@
-import { FC, memo } from 'react'
+import React from 'react';
+import styles from './Posts.module.css';
 
-import { PostsPropsType } from './PostsContainer'
-import { Post } from './Post/Post'
-import { AddPostFormData, AddPostReduxForm } from 'components/Profile/Posts/AddPostForm/AddPostForm'
+import {Post} from './Post';
+import {PostType, ProfileType} from '../../../types';
 
-import s from './Posts.module.css'
+type PropsType = {
+    profile: ProfileType | null
+    posts: PostType[]
+}
 
+export const Posts = React.memo((props: PropsType) => {
+    const {
+        posts,
+        profile
+    } = props
 
-export const Posts: FC<PostsPropsType> = memo(({ posts, addPost }) => {
-   const addNewPost = (formData: AddPostFormData) => {
-      addPost(formData.newPostText)
-   }
+    const postsElements = posts.map(post => {
+        return (
+            <Post key={post.id}
+                  post={post}
+                  profile={profile}
+            />
+        )
+    })
 
-   const postsMap = posts
-      .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
-
-   return (
-      <div className={s.postsBlock}>
-         <h3>My posts</h3>
-         <AddPostReduxForm onSubmit={addNewPost} />
-         <div className={s.posts}>
-            {postsMap}
-         </div>
-      </div>
-   )
+    return (
+        <div className={styles.timeline}>
+            <div className={styles.posts}>{postsElements}</div>
+        </div>
+    )
 })
