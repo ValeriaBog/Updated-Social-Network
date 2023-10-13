@@ -2,8 +2,11 @@
   "name": "social-network",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ValeriaBog.github.io/social-network-update",
+  "homepage": "http://ValeriaBog.github.io/Updated-Social-Network",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "12.0.0",
     "@testing-library/user-event": "13.2.1",
@@ -54,6 +57,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-syntax-flow": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@testing-library/dom": "^7.21.4",
     "@types/node": "16.7.13",
     "@types/react": "17.0.20",
     "@types/react-dom": "17.0.9",
@@ -61,6 +67,7 @@
     "@types/react-router-dom": "5.3.3",
     "@types/react-test-renderer": "17.0.1",
     "@types/redux-form": "8.3.3",
-    "@types/uuid": "8.3.4"
+    "@types/uuid": "8.3.4",
+    "autoprefixer": "^10.0.2"
   }
 }

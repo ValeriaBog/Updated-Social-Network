@@ -1,11 +1,13 @@
 import {FC} from 'react'
 import {LoginParamsType} from 'api/authAPI'
-import {LoginReduxForm} from 'components/Login/LoginForm/LoginForm'
 import {LoginPropsType} from 'components/Login/LoginContainer'
 import {Redirect} from 'react-router-dom'
+import LoginForm from "./LoginForm/LoginForm";
 
-export const Login: FC<LoginPropsType> = ({isAuth, logIn}) => {
+
+export const Login: FC<LoginPropsType> = ({isAuth, logIn, captchaUrl}) => {
     const onSubmit = (formData: LoginParamsType) => {
+        debugger
         logIn(formData)
     }
 
@@ -13,6 +15,6 @@ export const Login: FC<LoginPropsType> = ({isAuth, logIn}) => {
         (<Redirect to="/profile"/>) :
         (<div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
         </div>)
 }

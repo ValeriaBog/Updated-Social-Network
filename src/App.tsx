@@ -1,5 +1,5 @@
 import { Component, ComponentType } from 'react'
-import { Route, Switch, withRouter} from 'react-router-dom'
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { appThunks } from 'redux/reducers/appReducer'
@@ -29,11 +29,16 @@ export const App = compose<ComponentType>(
    connect(mapStateToProps, mapDispatchToProps),
    withRouter,
 )(class extends Component<AppPropsType> {
+
+
    componentDidMount() {
       const { initialization } = this.props
       initialization()
+
    }
-   render() {
+
+
+    render() {
       return !this.props.isInitialized ? (
          <Preloader />
       ) : (
@@ -42,6 +47,8 @@ export const App = compose<ComponentType>(
             <Navbar />
             <div className="app-wrapper-content">
                <Switch>
+                   <Route path="/" exact
+                          render={() => <Redirect to={"/profile"}/>} />
                    <Route path="/profile/:userId?">
                        <Suspense fallback={<div><Preloader/></div>}>
                            <ProfileContainer />
@@ -62,6 +69,8 @@ export const App = compose<ComponentType>(
                          render={() => <Settings />} />
                   <Route path="/login"
                          render={() => <LoginContainer />} />
+                   <Route path="*"
+                         render={() => <div>404 NOT FOUND</div>} />
                </Switch>
             </div>
          </div>

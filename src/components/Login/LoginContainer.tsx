@@ -8,7 +8,8 @@ import { Login } from 'components/Login/Login'
 import { AppStateType } from 'redux/store'
 
 const mapStateToProps = (state: AppStateType) => ({
-   isAuth: state.auth.isAuth
+   isAuth: state.auth.isAuth,
+   captchaUrl: state.auth.captcha
 })
 
 const mapDispatchToProps = {

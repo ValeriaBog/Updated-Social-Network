@@ -5,6 +5,7 @@ import {usersAPI} from 'api/usersAPI'
 import {Dispatch} from "redux";
 import {AxiosPromise, AxiosResponse} from "axios";
 import {updateObjectInArray} from "../../utils/object-helpers";
+import {handleServerNetworkError} from "../../utils/error-utils/server-network-error";
 
 const initialState = {
     users: [] as UserType[],
@@ -80,24 +81,42 @@ export const usersActions = {
 export const usersThunks = {
     fetchUsers(page: number, pageSize: number): AppThunkType {
         return async dispatch => {
-            dispatch(usersActions.toggleIsFetching(true))
-            dispatch(usersActions.setCurrentPage(page))
-            const res = await usersAPI.getUsers(page, pageSize)
-            dispatch(usersActions.toggleIsFetching(false))
-            dispatch(usersActions.setUsers(res.items))
-            dispatch(usersActions.setTotalUsersCount(res.totalCount))
+            try {
+                dispatch(usersActions.toggleIsFetching(true))
+                dispatch(usersActions.setCurrentPage(page))
+                const res = await usersAPI.getUsers(page, pageSize)
+                dispatch(usersActions.toggleIsFetching(false))
+                dispatch(usersActions.setUsers(res.items))
+                dispatch(usersActions.setTotalUsersCount(res.totalCount))
+            }catch (e) {
+                const error = (e as { message: string })
+                handleServerNetworkError(error, dispatch)
+            }
+
 
         }
     },
     follow(userID: number): AppThunkType {
         return async dispatch => {
-            followUnfollowFlow(dispatch, userID, usersAPI.follow.bind(usersAPI), usersActions.followSuccess)
+            try {
+                followUnfollowFlow(dispatch, userID, usersAPI.follow.bind(usersAPI), usersActions.followSuccess)
+            }catch (e) {
+                const error = (e as { message: string })
+                handleServerNetworkError(error, dispatch)
+            }
+
 
         }
     },
     unfollow(userID: number): AppThunkType {
         return async dispatch => {
-            followUnfollowFlow(dispatch, userID,  usersAPI.unfollow.bind(usersAPI), usersActions.unfollowSuccess)
+            try {
+                followUnfollowFlow(dispatch, userID,  usersAPI.unfollow.bind(usersAPI), usersActions.unfollowSuccess)
+            }catch (e) {
+                const error = (e as { message: string })
+                handleServerNetworkError(error, dispatch)
+            }
+
         }
     },
 }

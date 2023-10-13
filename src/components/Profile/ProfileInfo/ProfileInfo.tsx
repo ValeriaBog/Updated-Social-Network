@@ -1,11 +1,13 @@
 import {ChangeEvent, FC, useState} from 'react'
 import userPhoto from 'assets/images/user-1.jpg'
-import {ProfileType} from 'redux/types'
+import {ContactsType, ProfileType} from 'redux/types'
 import {Preloader} from 'components/common/Preloader/Preloader'
 import {ProfileStatus} from './ProfileStatus/ProfileStatus'
 import s from './ProfileInfo.module.css'
-import {UpdatePhotoType, UpdateStatusType} from 'redux/reducers/profileReducer'
+import {UpdatePhotoType, UpdateProfileType, UpdateStatusType} from 'redux/reducers/profileReducer'
 import {UploadWidget} from "../../common/UploadImage/UploadImage";
+import {ProfileDataForm, UserInfoType} from "./ProfileDataForm/ProfileDataForm";
+import {Contact} from "./Contacts/Contacts";
 
 
 type PropsType = {
@@ -14,27 +16,31 @@ type PropsType = {
     updateStatus: UpdateStatusType
     isOwner: boolean
     savePhoto: UpdatePhotoType
+    saveProfile: UpdateProfileType
 }
 export const ProfileInfo: FC<PropsType> = ({
                                                profile,
                                                status,
                                                updateStatus,
                                                isOwner,
-                                               savePhoto}) => {
+                                               savePhoto,
+                                               saveProfile
+                                           }) => {
 
-    const descriptionUser = (info: string, description: string) => {
-        return `${info} ${description ? description : 'in progress...'}`
+    const [editMode, setEdit] = useState(false)
+
+    const goToEditMode = () => {
+        setEdit(true)
     }
-
-    // const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.target.files!.length) {
-    //         savePhoto(e.target.files![0])
-    //     }
-    // }
     const onMainPhotoSelected = (e: File) => {
-            savePhoto(e)
+        debugger
+        savePhoto(e)
     }
 
+    const onSubmit = async (data: UserInfoType) => {
+       await saveProfile(data)
+        setEdit(false)
+    }
 
 
     return !profile ? (
@@ -50,19 +56,45 @@ export const ProfileInfo: FC<PropsType> = ({
                     <img src={profile.photos.small ? profile.photos.small : userPhoto}
                          alt={`Avatar of ${profile.fullName}`}
                          className={s.photoInfo}/>
-
-                    {/*{isOwner && <input type="file" onChange={onMainPhotoSelected}/>}*/}
-                    <div className={s.uploadPhoto}>{isOwner && <UploadWidget  onChange={onMainPhotoSelected}/>}</div>
+                    <div className={s.uploadPhoto}>{isOwner && <UploadWidget onChange={onMainPhotoSelected}/>}</div>
                 </div>
+                {editMode ?
+                    <ProfileDataForm profile={profile} onSubmit={onSubmit}/> :
+                    <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode}/>}
 
-                <div className={s.nameUser}>{profile.fullName}</div>
-                <div className={s.infoUser}>
-                    <div className={s.textInfo}>{descriptionUser('About me:', profile.aboutMe)}</div>
-                    <div className={s.textInfo}>{descriptionUser('Job:', profile.lookingForAJobDescription)}</div>
-                    <div className={s.textInfo}>{descriptionUser('Contacts:', profile.contacts.facebook)} </div>
-                </div>
             </div>
-
         </div>
     )
 }
+
+type PropsProf = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: () => void
+}
+
+export const ProfileData: FC<PropsProf> = ({profile, isOwner, goToEditMode}) => {
+    return (
+        <div>
+            {isOwner && <div>
+                <button onClick={goToEditMode}>edit</button>
+            </div>}
+            <div className={s.nameUser}>{profile.fullName}</div>
+            <div className={s.infoUser}>
+                <div className={s.textInfo}>About me: {profile.aboutMe}</div>
+                <div className={s.textInfo}>Looking for a job: {profile.lookingForAJob ? 'yes' : 'no'}</div>
+                {profile.lookingForAJob &&
+                    <div className={s.textInfo}>My professional skills: {profile.lookingForAJobDescription}</div>
+                }
+                <div className={s.textInfo}>Contacts: {Object.keys(profile.contacts).map((key) => {
+                    const contactKey = key as keyof ContactsType;
+                    return <Contact key={key} contactTitle={key} contactValue={profile.contacts[contactKey]}/>
+                })}
+                </div>
+            </div>
+        </div>
+    )
+
+}
+
+

@@ -5,17 +5,20 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { AppStateType } from 'redux/store'
 import { profileActions, profileThunks } from 'redux/reducers/profileReducer'
 import { Profile } from './Profile'
+import {appActions} from "../../redux/reducers/appReducer";
 
 const mapStateToProps = (state: AppStateType) => ({
    profile: state.profilePage.profile,
    status: state.profilePage.status,
    authorizedUserId: state.auth.id,
    isAuth: state.auth.isAuth,
+   error: state.app.error
 })
 
 const mapDispatchToProps = {
    ...profileActions,
    ...profileThunks,
+   ...appActions
 }
 
 const ProfileContainer = compose<ComponentType>(

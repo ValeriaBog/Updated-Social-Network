@@ -11,10 +11,10 @@ import { store } from 'redux/store'
 import App from './App'
 
 ReactDOM.render(
-   <HashRouter>
+   <BrowserRouter>
       <Provider store={store}>
          <App />
       </Provider>
-   </HashRouter>,
+   </BrowserRouter>,
    document.getElementById('root') as HTMLElement
 )

@@ -18,6 +18,12 @@ export const authAPI = {
    },
 }
 
+export const securityAPI = {
+   getCaptchaUrl(){
+      return instance.get('security/get-captcha-url')
+   }
+}
+
 // TYPES
 export type LoginParamsType = {
    email: string

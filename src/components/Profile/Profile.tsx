@@ -1,19 +1,33 @@
-import { FC } from 'react'
+import {FC} from 'react'
+import {ProfileInfo} from './ProfileInfo/ProfileInfo'
+import {PostsContainer} from './Posts/PostsContainer'
+import {ProfilePropsType} from './ProfileContainer'
+import {ErrorSnackbar} from "../common/ErrorSnackbar/ErrorSnackbar";
 
-// import s from './Profile.module.css'
-
-import { ProfileInfo } from './ProfileInfo/ProfileInfo'
-import { PostsContainer } from './Posts/PostsContainer'
-import { ProfilePropsType } from './ProfileContainer'
-
-type Props = ProfilePropsType & {isOwner: boolean}
+type Props = ProfilePropsType & { isOwner: boolean }
 
 
-export const Profile: FC<Props> = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
-   return (
-      <div>
-         <ProfileInfo profile={profile} status={status} updateStatus={updateStatus} isOwner={isOwner} savePhoto={savePhoto}/>
-         <PostsContainer />
-      </div>
-   )
+export const Profile: FC<Props> = ({
+                                       profile,
+                                       status,
+                                       updateStatus,
+                                       isOwner,
+                                       savePhoto,
+                                       saveProfile,
+                                       error,
+                                       setAppErrorAC
+                                   }) => {
+    return (
+        <div>
+            <ErrorSnackbar error={error} closeError={(error)=>{setAppErrorAC(error)}}/>
+            <ProfileInfo profile={profile}
+                         status={status}
+                         updateStatus={updateStatus}
+                         isOwner={isOwner}
+                         savePhoto={savePhoto}
+                         saveProfile={saveProfile}
+            />
+            <PostsContainer/>
+        </div>
+    )
 }

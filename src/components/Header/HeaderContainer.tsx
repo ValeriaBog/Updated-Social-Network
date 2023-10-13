@@ -13,7 +13,7 @@ const mapStateToProps = (state: AppStateType) => ({
 })
 
 const mapDispatchToProps = {
-   logOut: authThunks.logOut
+   logOut: authThunks.logout
 }
 
 export const HeaderContainer = compose<ComponentType>(

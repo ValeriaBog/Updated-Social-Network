@@ -72,5 +72,4 @@ img {
 .photoBlock:hover .uploadPhoto {
     opacity: 1;
     transition: all .3s ease-in-out;
-
 }
