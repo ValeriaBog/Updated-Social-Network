@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Updated-Social-Network/static/css/main.3f785a58.css",
-    "main.js": "/Updated-Social-Network/static/js/main.3bd6f3ec.js",
+    "main.js": "/Updated-Social-Network/static/js/main.c57a7f67.js",
     "static/css/855.3ed905e6.chunk.css": "/Updated-Social-Network/static/css/855.3ed905e6.chunk.css",
     "static/js/855.9515d837.chunk.js": "/Updated-Social-Network/static/js/855.9515d837.chunk.js",
     "static/css/30.3c225481.chunk.css": "/Updated-Social-Network/static/css/30.3c225481.chunk.css",
@@ -22,7 +22,6 @@
     "static/media/avatar-3.jpg": "/Updated-Social-Network/static/media/avatar-3.f37fc345351f79478e56.jpg",
     "static/media/avatar-4.jpg": "/Updated-Social-Network/static/media/avatar-4.e273c6a27f3c090c82e0.jpg",
     "static/media/avatar-5.jpg": "/Updated-Social-Network/static/media/avatar-5.c9d6bc640f93335dcad9.jpg",
-    "static/media/icon-globe.svg": "/Updated-Social-Network/static/media/icon-globe.5d5f8e2189d69e6f12886d7818b24c78.svg",
     "static/media/icon-vk.svg": "/Updated-Social-Network/static/media/icon-vk.63d486febab3638ea146e8458abc9e08.svg",
     "static/media/icon-github.svg": "/Updated-Social-Network/static/media/icon-github.da22fb741c6b8fb713c7d40d73204520.svg",
     "static/media/icon-news.svg": "/Updated-Social-Network/static/media/icon-news.14621b349da64305e76f27a94ec85fe4.svg",
@@ -32,25 +31,26 @@
     "index.html": "/Updated-Social-Network/index.html",
     "static/media/icon-messages.svg": "/Updated-Social-Network/static/media/icon-messages.650272f560c792033d9b4f44347b9944.svg",
     "static/media/icon-youtube.svg": "/Updated-Social-Network/static/media/icon-youtube.c132599030471e734cec434984321369.svg",
+    "static/media/icon-rss.svg": "/Updated-Social-Network/static/media/icon-rss.9911487e8eaba8dd787c84d2e684a375.svg",
     "static/media/icon-music.svg": "/Updated-Social-Network/static/media/icon-music.4320c9eb20479764014448fcf7600c63.svg",
+    "static/media/icon-globe.svg": "/Updated-Social-Network/static/media/icon-globe.6bee6aebd166460238d867ebcbe2008b.svg",
     "static/media/icon-instagram.svg": "/Updated-Social-Network/static/media/icon-instagram.c1a46f0ec5c2080bfbd8a03555a331ed.svg",
     "static/media/icon-twitter.svg": "/Updated-Social-Network/static/media/icon-twitter.973b98b9dbbfd443cb8f1b272cc2d4bf.svg",
+    "static/media/icon-heart.svg": "/Updated-Social-Network/static/media/icon-heart.931af203ce68dc2de2447b35d605d848.svg",
+    "static/media/icon-home.svg": "/Updated-Social-Network/static/media/icon-home.01dcc521f945dff9e0125374c4f098c9.svg",
+    "static/media/icon-users.svg": "/Updated-Social-Network/static/media/icon-users.f19cc0a9459c384ac6bded1a3fb311a8.svg",
+    "static/media/icon-logout.svg": "/Updated-Social-Network/static/media/icon-logout.0a035b196b7ba74f8054ab73db3563fe.svg",
+    "static/media/icon-menu.svg": "/Updated-Social-Network/static/media/icon-menu.2bae0bf7e52b9195834e31f66756101b.svg",
     "static/media/icon-search.svg": "/Updated-Social-Network/static/media/icon-search.d4c63d59b37ad20d76400adb9f0ee7d6.svg",
     "static/media/icon-more.svg": "/Updated-Social-Network/static/media/icon-more.1bb396989f806e6d727107c508fbe248.svg",
     "static/media/icon-profile.svg": "/Updated-Social-Network/static/media/icon-profile.3bf3ea5b5d2c98621babf45bf593ff84.svg",
     "static/media/icon-search-button.svg": "/Updated-Social-Network/static/media/icon-search-button.16b30515a192b9a875cb407e21edb53f.svg",
     "static/media/icon-looking.svg": "/Updated-Social-Network/static/media/icon-looking.29f10c7226c3270e77a6a3bca00335be.svg",
     "static/media/icon-skills.svg": "/Updated-Social-Network/static/media/icon-skills.0b5d14bae1373d7f21231949796e6502.svg",
-    "static/media/icon-rss.svg": "/Updated-Social-Network/static/media/icon-rss.074d63074d8dfdbd5352393707c64655.svg",
-    "static/media/icon-heart.svg": "/Updated-Social-Network/static/media/icon-heart.0ff3ff3b96a0e4a29e27036adcbe62c5.svg",
     "static/media/icon-facebook.svg": "/Updated-Social-Network/static/media/icon-facebook.7563b79c888e2539cfd4f821b5510010.svg",
-    "static/media/icon-users.svg": "/Updated-Social-Network/static/media/icon-users.65891cdf4a6363bc7354751f95019c03.svg",
     "static/media/icon-search-close.svg": "/Updated-Social-Network/static/media/icon-search-close.01cb60cc961ca3c6ed96c327cb25d0f2.svg",
-    "static/media/icon-logout.svg": "/Updated-Social-Network/static/media/icon-logout.1baeca068b37a2fb51f7194b35dbaafa.svg",
-    "static/media/icon-home.svg": "/Updated-Social-Network/static/media/icon-home.71dddd0623c15f0b0310be50230fab89.svg",
-    "static/media/icon-menu.svg": "/Updated-Social-Network/static/media/icon-menu.5cb1802283e713a309e887ec735afffe.svg",
     "main.3f785a58.css.map": "/Updated-Social-Network/static/css/main.3f785a58.css.map",
-    "main.3bd6f3ec.js.map": "/Updated-Social-Network/static/js/main.3bd6f3ec.js.map",
+    "main.c57a7f67.js.map": "/Updated-Social-Network/static/js/main.c57a7f67.js.map",
     "855.3ed905e6.chunk.css.map": "/Updated-Social-Network/static/css/855.3ed905e6.chunk.css.map",
     "855.9515d837.chunk.js.map": "/Updated-Social-Network/static/js/855.9515d837.chunk.js.map",
     "30.3c225481.chunk.css.map": "/Updated-Social-Network/static/css/30.3c225481.chunk.css.map",
@@ -63,6 +63,6 @@
   },
   "entrypoints": [
     "static/css/main.3f785a58.css",
-    "static/js/main.3bd6f3ec.js"
+    "static/js/main.c57a7f67.js"
   ]
 }
